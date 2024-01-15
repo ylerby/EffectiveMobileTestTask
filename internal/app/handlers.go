@@ -160,7 +160,7 @@ func (a *App) ReadRecordByAgeHandler(w http.ResponseWriter, r *http.Request) {
 
 	ageNumber, err := strconv.Atoi(age)
 	if err != nil || ageNumber < 0 {
-		message = fmt.Sprintf("некорректное значение возраста")
+		message = "некорректное значение возраста"
 		a.Logger.Info(message)
 		a.ErrorResponseWriter(w, http.StatusInternalServerError, message)
 		return
@@ -168,7 +168,7 @@ func (a *App) ReadRecordByAgeHandler(w http.ResponseWriter, r *http.Request) {
 
 	result, err := a.Sql.ReadRecordByAge(ageNumber)
 	if err != nil {
-		message = fmt.Sprintf("ошибка при получении записей")
+		message = "ошибка при получении записей"
 		a.Logger.Info(message)
 		a.ErrorResponseWriter(w, http.StatusInternalServerError, message)
 		return
@@ -191,7 +191,7 @@ func (a *App) ReadRecordByGenderHandler(w http.ResponseWriter, r *http.Request) 
 	var message string
 
 	if gender == "" {
-		message = fmt.Sprintf("некорректное значение пола")
+		message = "некорректное значение пола"
 		a.Logger.Info(message)
 		a.ErrorResponseWriter(w, http.StatusInternalServerError, message)
 		return
@@ -199,7 +199,7 @@ func (a *App) ReadRecordByGenderHandler(w http.ResponseWriter, r *http.Request) 
 
 	result, err := a.Sql.ReadRecordByGender(gender)
 	if err != nil {
-		message = fmt.Sprintf("ошибка при получении записей")
+		message = "ошибка при получении записей"
 		a.Logger.Info(message)
 		a.ErrorResponseWriter(w, http.StatusInternalServerError, message)
 		return
@@ -222,7 +222,7 @@ func (a *App) ReadRecordByCountryHandler(w http.ResponseWriter, r *http.Request)
 	var message string
 
 	if country == "" {
-		message = fmt.Sprintf("некорректное значение национальности")
+		message = "некорректное значение национальности"
 		a.Logger.Info(message)
 		a.ErrorResponseWriter(w, http.StatusInternalServerError, message)
 		return
@@ -230,7 +230,7 @@ func (a *App) ReadRecordByCountryHandler(w http.ResponseWriter, r *http.Request)
 
 	result, err := a.Sql.ReadRecordByCountry(country)
 	if err != nil {
-		message = fmt.Sprintf("ошибка при получении записей")
+		message = "ошибка при получении записей"
 		a.Logger.Info(message)
 		a.ErrorResponseWriter(w, http.StatusInternalServerError, message)
 		return
@@ -269,7 +269,7 @@ func (a *App) UpdateRecordByNameHandler(w http.ResponseWriter, r *http.Request) 
 	}
 
 	if currentRequestBody.NewName == "" {
-		message = fmt.Sprintf("некорректное значение поля")
+		message = "некорректное значение поля"
 		a.Logger.Info(message)
 		a.ErrorResponseWriter(w, http.StatusInternalServerError, message)
 		return
@@ -310,7 +310,7 @@ func (a *App) UpdateRecordBySurnameHandler(w http.ResponseWriter, r *http.Reques
 	}
 
 	if currentRequestBody.NewSurname == "" {
-		message = fmt.Sprintf("некорректное значение поля")
+		message = "некорректное значение поля"
 		a.Logger.Info(message)
 		a.ErrorResponseWriter(w, http.StatusInternalServerError, message)
 		return
@@ -351,7 +351,7 @@ func (a *App) UpdateRecordByPatronymicHandler(w http.ResponseWriter, r *http.Req
 	}
 
 	if currentRequestBody.NewPatronymic == "" {
-		message = fmt.Sprintf("некорректное значение поля")
+		message = "некорректное значение поля"
 		a.Logger.Info(message)
 		a.ErrorResponseWriter(w, http.StatusInternalServerError, message)
 		return
@@ -392,7 +392,7 @@ func (a *App) UpdateRecordByAgeHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if currentRequestBody.NewAge < 0 {
-		message = fmt.Sprintf("некорректное значение поля")
+		message = "некорректное значение поля"
 		a.Logger.Info(message)
 		a.ErrorResponseWriter(w, http.StatusInternalServerError, message)
 		return
@@ -432,7 +432,7 @@ func (a *App) DeleteRecordHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if currentRequestBody.ID < 0 {
-		message = fmt.Sprintf("некорректное значение поля")
+		message = "некорректное значение поля"
 		a.Logger.Info(message)
 		a.ErrorResponseWriter(w, http.StatusInternalServerError, message)
 		return
