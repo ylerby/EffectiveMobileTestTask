@@ -16,6 +16,11 @@ type UpdateRecordBySurnameRequestBody struct {
 	NewSurname string `json:"new_surname"`
 }
 
+type UpdateRecordByPatronymicRequestBody struct {
+	ID            int    `json:"id"`
+	NewPatronymic string `json:"new_patronymic"`
+}
+
 type UpdateRecordByAgeRequestBody struct {
 	ID     int `json:"id"`
 	NewAge int `json:"new_age"`
@@ -64,4 +69,13 @@ type Countries struct {
 
 type DeleteRecordRequestBody struct {
 	ID int `json:"id"`
+}
+
+type ReadRecordStruct struct {
+	Name       string
+	Surname    string
+	Patronymic string
+	Age        int
+	Gender     string
+	Country    string
 }

@@ -31,11 +31,15 @@ func (a *App) Run() {
 
 	a.Logger.Info("успешное подключении к БД")
 
-	http.HandleFunc("/create_record", a.LoggingMiddleware(http.MethodPost, a.CreateRecordHandler))
 	http.HandleFunc("/", a.LoggingMiddleware(http.MethodGet, a.GetAllRecordsHandler))
-	http.HandleFunc("/read_record", a.LoggingMiddleware(http.MethodGet, a.ReadRecordHandler))
+	http.HandleFunc("/create_record", a.LoggingMiddleware(http.MethodPost, a.CreateRecordHandler))
+	http.HandleFunc("/read_record_by_full_name", a.LoggingMiddleware(http.MethodGet, a.ReadRecordByFullNameHandler))
+	http.HandleFunc("/read_record_by_age", a.LoggingMiddleware(http.MethodGet, a.ReadRecordByAgeHandler))
+	http.HandleFunc("/read_record_by_gender", a.LoggingMiddleware(http.MethodGet, a.ReadRecordByGenderHandler))
+	http.HandleFunc("/read_record_by_country", a.LoggingMiddleware(http.MethodGet, a.ReadRecordByCountryHandler))
 	http.HandleFunc("/update_record_by_name", a.LoggingMiddleware(http.MethodPut, a.UpdateRecordByNameHandler))
 	http.HandleFunc("/update_record_by_surname", a.LoggingMiddleware(http.MethodPut, a.UpdateRecordBySurnameHandler))
+	http.HandleFunc("/update_record_by_patronymic", a.LoggingMiddleware(http.MethodPut, a.UpdateRecordByPatronymicHandler))
 	http.HandleFunc("/update_record_by_age", a.LoggingMiddleware(http.MethodPut, a.UpdateRecordByAgeHandler))
 	http.HandleFunc("/delete_record", a.LoggingMiddleware(http.MethodDelete, a.DeleteRecordHandler))
 
