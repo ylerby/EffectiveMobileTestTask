@@ -32,7 +32,7 @@ func (a *App) CreateRecordHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if currentRequestBody.Name == "" || currentRequestBody.Surname == "" {
-		message = fmt.Sprintf("некорректные значения полей")
+		message = "некорректные значения полей"
 		a.Logger.Info(message)
 		a.ErrorResponseWriter(w, http.StatusInternalServerError, message)
 		return
@@ -128,7 +128,7 @@ func (a *App) ReadRecordByFullNameHandler(w http.ResponseWriter, r *http.Request
 	var message string
 
 	if name == "" || surname == "" {
-		message = fmt.Sprintf("некорректное значение параметра(ов)")
+		message = "некорректное значение параметра(ов)"
 		a.Logger.Info(message)
 		a.ErrorResponseWriter(w, http.StatusInternalServerError, message)
 		return
@@ -136,7 +136,7 @@ func (a *App) ReadRecordByFullNameHandler(w http.ResponseWriter, r *http.Request
 
 	result, err := a.Sql.ReadRecordByFullName(name, surname, patronymic)
 	if err != nil {
-		message = fmt.Sprintf("ошибка при получении записей")
+		message = "ошибка при получении записей"
 		a.Logger.Info(message)
 		a.ErrorResponseWriter(w, http.StatusInternalServerError, message)
 		return
