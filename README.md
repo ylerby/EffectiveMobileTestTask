@@ -260,3 +260,8 @@ golangci-lint run
 ```
 
 ### Функциональное тестирование производилось с помощьюю Postman
+
+#### Миграции производились с помощью:
+```go
+s.DB.AutoMigrate(&models.RecordModel{})
+```
