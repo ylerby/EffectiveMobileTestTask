@@ -5,6 +5,7 @@ import (
 	"context"
 	"github.com/sirupsen/logrus"
 	"net/http"
+	"os"
 	"time"
 )
 
@@ -16,7 +17,7 @@ type App struct {
 
 func NewApplication() *App {
 	return &App{
-		Server: &http.Server{Addr: ":8080"},
+		Server: &http.Server{Addr: os.Getenv("APPLICATION_PORT")},
 		Sql:    sql.NewDatabase(),
 		Logger: logrus.New(),
 	}
