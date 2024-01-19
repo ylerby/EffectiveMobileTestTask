@@ -4,11 +4,10 @@ import (
 	"EffectiveMobileTask/internal/models"
 	"EffectiveMobileTask/schemas"
 	"fmt"
-	"github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+	"log"
 	"os"
-	"path/filepath"
 )
 
 func NewDatabase() *Sql {
@@ -16,25 +15,15 @@ func NewDatabase() *Sql {
 }
 
 func (s *Sql) Connect() error {
-	workingDir, err := os.Getwd()
-	if err != nil {
-		return fmt.Errorf("невозможно получить текущую директорию - %s", err)
-	}
-
-	envPath := filepath.Join(workingDir, "..", ".env")
-
-	err = godotenv.Load(envPath)
-	if err != nil {
-		return fmt.Errorf("невозможно получить .env-файл - %s", err)
-	}
-
-	dsn := "host=" + os.Getenv("DB_HOST") +
-		" user=" + os.Getenv("DB_USER") +
-		" password=" + os.Getenv("DB_PASSWORD") +
-		" dbname=" + os.Getenv("DB_NAME") +
-		" port=" + os.Getenv("DB_PORT") +
+	var err error
+	dsn := "host=" + os.Getenv("POSTGRES_HOST") +
+		" user=" + os.Getenv("POSTGRES_USER") +
+		" password=" + os.Getenv("POSTGRES_PASSWORD") +
+		" dbname=" + os.Getenv("POSTGRES_DB") +
+		" port=" + os.Getenv("POSTGRES_PORT") +
 		" sslmode=disable"
 
+	log.Println(dsn)
 	s.DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		return fmt.Errorf("ошибка при подключении к БД - %s", err)
