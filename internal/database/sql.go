@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
-	"log"
 	"os"
 )
 
@@ -23,7 +22,6 @@ func (s *Sql) Connect() error {
 		" port=" + os.Getenv("POSTGRES_PORT") +
 		" sslmode=disable"
 
-	log.Println(dsn)
 	s.DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		return fmt.Errorf("ошибка при подключении к БД - %s", err)
